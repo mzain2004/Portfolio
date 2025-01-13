@@ -1,0 +1,139 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+  }
+  
+  .container {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 50px; 
+  }
+  
+  .service-wrapper {
+    padding: 5% 8%;
+    text-align: center;
+  }
+  
+  .service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    color: #0a0a0a;
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);}
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  .card {
+    height: 330px;
+    width: 370px;
+    background-color: #ecf1f1;
+    padding: 3% 8%;
+    border: 0.2px solid rgb(24, 96, 124);
+    border-radius: 12px; 
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+  }
+  
+  .card img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #57a0ff;
+  }
+  
+  .card h2 {
+    padding-top: 10px;
+    color: #0e0d0d;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+  }
+  
+  .card p {
+    width: 100%;
+    margin-top: 12px;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .card:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-10px);
+    cursor: pointer;
+    border-color: #125083;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card:hover p {
+    font-size: 18px;
+  }
+  
+  .card span {
+    font-size: 30px;
+    color: rgb(12, 12, 12);
+  }
+  
+  .card a {
+    font-weight: 800;
+    text-decoration: none;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    background-color: #57a0ff;
+    font-size: 18px;
+    color: #fff;
+    transition: 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .card a:hover {
+    border: 2px solid #57a0ff;
+    background-color: #fefeff;
+    color: #57a0ff; 
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    .cards {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+  
