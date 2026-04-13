@@ -20,11 +20,11 @@ export default function AuroraBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Aurora blobs — each drifts organically
+    // Aurora blobs with organic drift
     const blobs = [
-      { x: 0.2, y: 0.3, vx: 0.00015, vy: 0.0001, r: 0.45, color: [6, 182, 212] },   // cyan-500
-      { x: 0.7, y: 0.6, vx: -0.0001, vy: 0.00012, r: 0.4, color: [139, 92, 246] },  // violet-500
-      { x: 0.5, y: 0.8, vx: 0.00008, vy: -0.00015, r: 0.35, color: [34, 211, 238] }, // cyan-400
+      { x: 0.2, y: 0.3, vx: 0.00015, vy: 0.0001, r: 0.45, color: [139, 92, 246] },   // violet-500
+      { x: 0.7, y: 0.6, vx: -0.0001, vy: 0.00012, r: 0.4, color: [139, 92, 246] },    // violet-500
+      { x: 0.5, y: 0.8, vx: 0.00008, vy: -0.00015, r: 0.35, color: [167, 139, 250] }, // violet-400
     ];
 
     const draw = () => {

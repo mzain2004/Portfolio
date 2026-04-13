@@ -1,4 +1,16 @@
-export const siteConfig = {
+type SiteConfig = {
+  phishSlayerUrl: string;
+  email: string;
+  socials: Array<{
+    name: string;
+    href: string;
+    iconName: "github" | "linkedin" | "twitter";
+  }>;
+};
+
+export const siteConfig: SiteConfig = {
+  phishSlayerUrl: "https://phishslayer.tech",
+  email: "zainrana605890@gmail.com",
   socials: [
     {
       name: 'GitHub',

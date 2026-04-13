@@ -46,7 +46,7 @@ export default function ParticleNetwork() {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(34, 211, 238, 0.3)'; // Cyan tint
+        ctx.fillStyle = 'rgba(167, 139, 250, 0.3)'; // violet-400 tint
         ctx.fill();
       }
     }
@@ -68,7 +68,7 @@ export default function ParticleNetwork() {
           
           if (distance < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(34, 211, 238, ${0.15 - distance / 120 * 0.15})`;
+            ctx.strokeStyle = `rgba(167, 139, 250, ${0.15 - distance / 120 * 0.15})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -83,7 +83,7 @@ export default function ParticleNetwork() {
         
         if (distMouse < 150) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(34, 211, 238, ${0.3 - distMouse / 150 * 0.3})`;
+          ctx.strokeStyle = `rgba(167, 139, 250, ${0.3 - distMouse / 150 * 0.3})`;
           ctx.lineWidth = 1;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(mouse.x, mouse.y);

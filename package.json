@@ -7,10 +7,10 @@
     "dev": "next dev --turbopack -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest --run"
   },
   "dependencies": {
-    "@google/genai": "^1.29.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
     "next": "15.2.0",
@@ -20,15 +20,21 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^22.14.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.21",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.3",
+    "fast-check": "^4.6.0",
+    "jsdom": "^29.0.2",
     "postcss": "^8.4.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
-    "typescript": "~5.8.2"
+    "typescript": "~5.8.2",
+    "vitest": "^4.1.4"
   }
 }

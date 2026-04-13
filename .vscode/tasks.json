@@ -1,0 +1,77 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Status targeted",
+			"type": "shell",
+			"command": "git status --short -- .env.example app/layout.tsx app/api/github/route.ts components/LiveStats.tsx components/AboutSection.tsx components/HeroSection.tsx components/ExperienceEducation.tsx components/SelectedWork.tsx components/PhishSlayerSpotlight.tsx components/Navbar.tsx components/Footer.tsx",
+			"isBackground": false
+		},
+		{
+			"label": "Commit targeted fixes",
+			"type": "shell",
+			"command": "git add .env.example app/layout.tsx app/api/github/route.ts components/LiveStats.tsx components/AboutSection.tsx components/HeroSection.tsx components/ExperienceEducation.tsx components/SelectedWork.tsx components/PhishSlayerSpotlight.tsx components/Navbar.tsx components/Footer.tsx; git commit -m \"fix: portfolio content and data pipeline cleanup\"",
+			"isBackground": false
+		},
+		{
+			"label": "Commit message retry",
+			"type": "shell",
+			"command": "git commit -m 'fix: portfolio content and data pipeline cleanup'",
+			"isBackground": false
+		},
+		{
+			"label": "Post-commit summary",
+			"type": "shell",
+			"command": "git status --short; git show --name-status --stat --oneline --no-patch HEAD; git show --stat --oneline HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Head commit files",
+			"type": "shell",
+			"command": "git show --name-status --oneline --no-patch HEAD; git show --name-only --pretty=format: HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Head names only",
+			"type": "shell",
+			"command": "git show --name-only --pretty=format: HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Diff tree head",
+			"type": "shell",
+			"command": "git diff-tree --no-commit-id --name-only -r HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Head stat",
+			"type": "shell",
+			"command": "git show --stat --oneline HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Head numstat",
+			"type": "shell",
+			"command": "git show --numstat --pretty=format: HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Head numstat 2",
+			"type": "shell",
+			"command": "git show --numstat --pretty=format: HEAD",
+			"isBackground": false
+		},
+		{
+			"label": "Head numstat tail",
+			"type": "shell",
+			"command": "git show --numstat --pretty=format: HEAD -- components/PhishSlayerSpotlight.tsx components/SelectedWork.tsx",
+			"isBackground": false
+		},
+		{
+			"label": "Status targeted post",
+			"type": "shell",
+			"command": "git status --short -- .env.example app/layout.tsx app/api/github/route.ts components/LiveStats.tsx components/AboutSection.tsx components/HeroSection.tsx components/ExperienceEducation.tsx components/SelectedWork.tsx components/PhishSlayerSpotlight.tsx components/Navbar.tsx components/Footer.tsx",
+			"isBackground": false
+		}
+	]
+}
