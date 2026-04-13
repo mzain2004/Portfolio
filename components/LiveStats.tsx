@@ -190,6 +190,14 @@ export default function LiveStats() {
     }));
   }, [stats]);
 
+  const topLanguageShare = useMemo(() => {
+    if (languageBreakdown.length === 0) {
+      return 0;
+    }
+
+    return Math.round(languageBreakdown[0].percentage);
+  }, [languageBreakdown]);
+
   useEffect(() => {
     fetchStats();
   }, [fetchStats]);
@@ -198,7 +206,7 @@ export default function LiveStats() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[...Array(4)].map((_, index) => (
+          {[...Array(3)].map((_, index) => (
             <div
               key={index}
               className="h-36 bg-zinc-900/50 border border-zinc-800/60 rounded-2xl animate-pulse"
@@ -255,12 +263,11 @@ export default function LiveStats() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.1 } },
             }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
           >
-            <StatCard value={stats.totalCommits} label="Yearly Commits" />
+            <StatCard value={stats.totalCommits} label="Yearly Contributions" />
             <StatCard value={stats.publicRepos} label="Repositories" />
-            <StatCard value={2} label="Years Coding" suffix="+" />
-            <StatCard value={15} label="Projects Built" suffix="+" />
+            <StatCard value={topLanguageShare} label="Top Language Share" suffix="%" />
           </motion.div>
 
           <motion.div

@@ -7,21 +7,23 @@ const transition = { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const };
 
 const experienceItems = [
   {
-    title: "Frontend Developer Intern",
-    meta: "DEN Remote · 3 Months",
+    title: "BS Cyber Security Student",
+    organization: "Air University Multan Campus",
+    period: "2025 to Present",
     bullets: [
-      "Built 5+ responsive interfaces for production workflows",
-      "Improved code quality through peer review and cleanup",
-      "Built a portfolio that showcases 10+ shipped projects",
+      "Studying core security concepts including network security, cryptography and ethical hacking",
+      "Built PhishSlayer as a live production AI security platform during studies",
+      "Completed practical security labs focused on attack paths and vulnerability patching",
     ],
   },
   {
-    title: "Academic Security Projects",
-    meta: "Air University · Ongoing",
+    title: "Web Developer",
+    organization: "Self Taught",
+    period: "2023 to 2025",
     bullets: [
-      "Completed practical security labs focused on attack paths",
-      "Built secure web apps and patched discovered vulnerabilities",
-      "Built PhishSlayer as a live production security product",
+      "Built 10+ projects spanning HTML, CSS, JavaScript, PHP and React",
+      "Developed real world apps including a news portal, Spotify UI clone, CRUD app and calculator UI",
+      "Transitioned into cybersecurity after 1.5 years of hands on web development",
     ],
   },
 ];
@@ -83,7 +85,8 @@ export default function ExperienceEducation() {
                   <span className="absolute -left-6.25 top-2 bg-violet-400 w-3 h-3 rounded-full" />
                   <div className="bg-zinc-900/50 border border-zinc-800/60 rounded-2xl p-5">
                     <h3 className="text-zinc-100 font-semibold text-lg">{item.title}</h3>
-                    <p className="text-zinc-400 font-mono text-xs mt-1">{item.meta}</p>
+                    <p className="text-zinc-300 mt-1">{item.organization}</p>
+                    <p className="text-zinc-400 font-mono text-xs mt-1">{item.period}</p>
                     <ul className="mt-4 space-y-2 text-zinc-300 text-sm">
                       {item.bullets.map((bullet) => (
                         <li key={bullet} className="leading-relaxed">• {bullet}</li>

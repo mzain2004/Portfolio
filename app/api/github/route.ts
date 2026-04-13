@@ -3,8 +3,22 @@ import { NextResponse } from "next/server";
 const GITHUB_USERNAME = "mzain2004";
 const GITHUB_API_BASE = "https://api.github.com";
 
+export const dynamic = "force-dynamic";
+
 type Repo = {
   languages_url: string;
+};
+
+type ContributionsGraphQLResponse = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions?: number;
+        };
+      };
+    };
+  };
 };
 
 function getGitHubHeaders(token: string) {
@@ -18,7 +32,7 @@ function getGitHubHeaders(token: string) {
 async function fetchJson<T>(url: string, token: string, context: string): Promise<T> {
   const response = await fetch(url, {
     headers: getGitHubHeaders(token),
-    next: { revalidate: 3600 },
+    cache: "no-store",
   });
 
   if (!response.ok) {
@@ -26,6 +40,43 @@ async function fetchJson<T>(url: string, token: string, context: string): Promis
   }
 
   return (await response.json()) as T;
+}
+
+async function fetchYearlyContributions(token: string): Promise<number> {
+  const now = new Date();
+  const yearStart = `${now.getUTCFullYear()}-01-01T00:00:00Z`;
+  const yearEnd = `${now.getUTCFullYear()}-12-31T23:59:59Z`;
+
+  const response = await fetch(`${GITHUB_API_BASE}/graphql`, {
+    method: "POST",
+    headers: getGitHubHeaders(token),
+    cache: "no-store",
+    body: JSON.stringify({
+      query: `
+        query($login: String!, $from: DateTime!, $to: DateTime!) {
+          user(login: $login) {
+            contributionsCollection(from: $from, to: $to) {
+              contributionCalendar {
+                totalContributions
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        login: GITHUB_USERNAME,
+        from: yearStart,
+        to: yearEnd,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`GitHub GraphQL request failed: ${response.status} ${response.statusText}`);
+  }
+
+  const payload = (await response.json()) as ContributionsGraphQLResponse;
+  return payload.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions ?? 0;
 }
 
 async function fetchPublicRepos(token: string): Promise<Repo[]> {
@@ -59,19 +110,7 @@ export async function GET() {
       );
     }
 
-    const now = new Date();
-    const yearStart = `${now.getUTCFullYear()}-01-01`;
-    const today = now.toISOString().slice(0, 10);
-
-    const commitQuery = encodeURIComponent(
-      `author:${GITHUB_USERNAME} author-date:${yearStart}..${today}`
-    );
-    const commitsUrl = `${GITHUB_API_BASE}/search/commits?q=${commitQuery}&per_page=1`;
-    const commitData = await fetchJson<{ total_count?: number }>(
-      commitsUrl,
-      token,
-      "yearly commit count"
-    );
+    const yearlyContributions = await fetchYearlyContributions(token);
 
     const userUrl = `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}`;
     const userData = await fetchJson<{ public_repos: number }>(userUrl, token, "user profile");
@@ -101,7 +140,7 @@ export async function GET() {
     );
 
     return NextResponse.json({
-      totalCommits: commitData.total_count ?? 0,
+      totalCommits: yearlyContributions,
       publicRepos: userData.public_repos ?? 0,
       languages,
     });
