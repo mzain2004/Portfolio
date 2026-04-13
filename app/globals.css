@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Instrument+Serif:italic&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-barlow: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-instrument: "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-50 antialiased selection:bg-zinc-800 selection:text-white;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
