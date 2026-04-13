@@ -1,11 +1,13 @@
-"use client";
-
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-zinc-900 mt-16 py-8 relative z-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-        <p className="text-zinc-500 text-sm">
-          © 2026 Muhammad Zain. All rights reserved.
+    <footer className="w-full border-t border-zinc-800/60 py-8 px-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+        <div className="flex items-center">
+          <span className="font-barlow font-bold text-2xl text-white">MZ</span>
+          <span className="font-barlow font-bold text-2xl text-violet-400">.</span>
+        </div>
+        <p className="text-zinc-500 text-sm text-right">
+          {`© ${new Date().getFullYear()} Muhammad Zain. Built with Next.js.`}
         </p>
       </div>
     </footer>

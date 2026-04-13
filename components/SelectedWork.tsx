@@ -1,138 +1,123 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
-import MagneticButton from "./MagneticButton";
+import { ExternalLink, Github } from "lucide-react";
 
 type Project = {
   title: string;
-  summary: string;
+  description: string;
   stack: string[];
-  image: string;
-  imageAlt: string;
   href: string;
+  status: "live" | "in-development";
+  liveHref?: string;
 };
 
 const projects: Project[] = [
   {
-    title: "Phish-Slayer",
-    summary:
-      "AI-first threat intelligence and EDR platform with real-time telemetry, triage workflows, and automated incident context for faster SOC decisions.",
-    stack: ["Next.js 15", "Tailwind", "Node.js", "Supabase", "Python"],
-    image: "/projects/phish-slayer.png",
-    imageAlt: "Phish-Slayer project preview",
-    href: "#",
+    title: "PhishSlayer",
+    description: "Autonomous SOC Intelligence Platform. AI agent swarms that auto triage, investigate and respond to threats in real time.",
+    stack: ["Next.js 15", "TypeScript", "Supabase", "AI Agents"],
+    href: "https://github.com/mzain2004/PhishSlayer",
+    status: "live" as const,
+    liveHref: "https://phishslayer.tech",
   },
   {
-    title: "Antigravity Agent Skills",
-    summary:
-      "A curated automation toolkit for high-performance engineering workflows, packaging reusable AI agent skills and reliability-first execution patterns.",
-    stack: ["TypeScript", "Automation", "Prompt Engineering", "DX"],
-    image: "/projects/agent-skills.png",
-    imageAlt: "Antigravity Agent Skills preview",
-    href: "#",
+    title: "Spotify UI Clone",
+    description: "Pixel accurate front end recreation of Spotify's UI. Focus on layout precision and responsive design.",
+    stack: ["HTML", "CSS"],
+    href: "https://github.com/mzain2004/Spotify-UI-Clone",
+    status: "live" as const,
+    liveHref: "https://github.com/mzain2004/Spotify-UI-Clone",
   },
   {
-    title: "Threat Lab Utility Suite",
-    summary:
-      "Security utility suite for fast malware triage and IOC enrichment, designed for analysts who need signal-rich context in under a minute.",
-    stack: ["React", "FastAPI", "PostgreSQL", "Redis"],
-    image: "/projects/threat-lab.png",
-    imageAlt: "Threat Lab Utility Suite preview",
-    href: "#",
+    title: "Dynamic News Portal",
+    description: "Real time news aggregation portal powered by the GNews API with dynamic filtering and category browsing.",
+    stack: ["JavaScript", "CSS", "GNews API"],
+    href: "https://github.com/mzain2004/Dynamic-News-Portal",
+    status: "live" as const,
+    liveHref: "https://github.com/mzain2004/Dynamic-News-Portal",
+  },
+  {
+    title: "CRUD App PHP",
+    description: "Simple full stack CRUD application built with PHP, HTML and CSS. Core database operations with clean UI.",
+    stack: ["PHP", "HTML", "CSS"],
+    href: "https://github.com/mzain2004/CRUD-App-PHP",
+    status: "live" as const,
+    liveHref: "https://github.com/mzain2004/CRUD-App-PHP",
   },
 ];
 
-function ProjectFeature({ project, index }: { project: Project; index: number }) {
-  const isReversed = index % 2 === 1;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.05 }}
-      className="bg-zinc-900/20 backdrop-blur-sm rounded-3xl p-5 md:p-7"
-    >
-      <div
-        className={`flex flex-col gap-8 lg:gap-10 lg:items-center ${
-          isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
-        }`}
-      >
-        <div className="w-full lg:w-3/5">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="relative overflow-hidden rounded-2xl shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06),inset_0_-80px_90px_rgba(0,0,0,0.4)]"
-          >
-            <Image
-              src={project.image}
-              alt={project.imageAlt}
-              width={1440}
-              height={900}
-              className="h-[260px] w-full object-cover md:h-[360px]"
-            />
-          </motion.div>
-        </div>
-
-        <div className="w-full lg:w-2/5">
-          <h4 className="font-barlow text-3xl md:text-5xl leading-tight text-zinc-100 tracking-tight">
-            {project.title}
-          </h4>
-          <p className="mt-4 text-zinc-300 leading-relaxed md:text-lg">
-            {project.summary}
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.stack.map((tech) => (
-              <span
-                key={tech}
-                className="bg-white/5 text-zinc-300 text-sm px-3 py-1 rounded-full"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-8">
-            <MagneticButton>
-              <motion.a
-                href={project.href}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                className="relative inline-flex rounded-full p-[1px] overflow-hidden"
-              >
-                <span className="absolute inset-[-120%] bg-[conic-gradient(from_180deg,rgba(34,211,238,0.95),rgba(34,211,238,0.05),rgba(34,211,238,0.95))] animate-spin [animation-duration:1.8s]" />
-                <span className="relative inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-cyan-300 transition-colors duration-300 hover:text-cyan-200">
-                  View Project <ArrowUpRight size={16} />
-                </span>
-              </motion.a>
-            </MagneticButton>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export default function SelectedWork() {
   return (
-    <section id="work" className="py-24 px-6 max-w-7xl mx-auto relative z-10">
-      <div className="relative mb-16 text-center">
-        <h2 className="text-[10vw] md:text-[8vw] font-bold text-zinc-900/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none tracking-tighter whitespace-nowrap z-0">
-          PORTFOLIO
-        </h2>
-        <h3 className="text-3xl md:text-4xl font-semibold relative z-10 tracking-tight text-zinc-100">
+    <section id="work" className="py-24 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-barlow font-bold text-5xl text-white mb-12">
           Selected Work
-        </h3>
-      </div>
+        </h2>
 
-      <div className="relative z-10 flex flex-col gap-8 md:gap-10">
-        {projects.map((project, index) => (
-          <ProjectFeature key={project.title} project={project} index={index} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.15 }}
+              className="bg-zinc-900/50 border border-zinc-800/60 rounded-2xl p-6 flex flex-col gap-4 hover:border-violet-400/30 hover:shadow-[0_0_20px_rgba(167,139,250,0.08)] transition-all duration-300"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-zinc-100 font-semibold text-lg">{project.title}</h3>
+                {project.status === "live" && <span className="text-xs font-mono text-violet-300">Live</span>}
+              </div>
+              <p className="text-zinc-400 text-sm leading-relaxed flex-1">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-violet-400/10 text-violet-300 border border-violet-400/20 rounded-full px-2 py-0.5 font-mono text-xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {project.href && project.liveHref && (
+                <div className="mt-auto flex items-center gap-3">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-3 py-2 text-xs font-mono text-zinc-300 hover:text-zinc-100 hover:border-zinc-500 transition-colors"
+                  >
+                    <Github size={14} /> GitHub
+                  </a>
+                  <a
+                    href={project.liveHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-violet-400/50 bg-violet-400/10 px-3 py-2 text-xs font-mono text-violet-300 hover:bg-violet-400/20 transition-colors"
+                  >
+                    <ExternalLink size={14} /> Live
+                  </a>
+                </div>
+              )}
+
+              {project.href && !project.liveHref && (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-500 hover:text-zinc-300 text-xs font-mono flex items-center gap-1 transition-colors mt-auto"
+                >
+                  <Github size={12} /> View on GitHub
+                </a>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
