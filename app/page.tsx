@@ -6,7 +6,6 @@ import AboutSection from '../components/AboutSection';
 import PhishSlayerSpotlight from '../components/PhishSlayerSpotlight';
 import SelectedWork from '../components/SelectedWork';
 import ExperienceEducation from '../components/ExperienceEducation';
-import LiveStats from '../components/LiveStats';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import ParticleNetwork from '../components/ParticleNetwork';
@@ -30,9 +29,6 @@ export default function Page() {
         <PhishSlayerSpotlight />
         <SelectedWork />
         <ExperienceEducation />
-        <section id="stats" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-20">
-          <LiveStats />
-        </section>
         <Contact />
         <Footer />
       </div>
