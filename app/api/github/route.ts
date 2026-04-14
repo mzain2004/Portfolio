@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 const GITHUB_USERNAME = "mzain2004";
 const GITHUB_API_BASE = "https://api.github.com";
 
-export const dynamic = "force-dynamic";
-
 type Repo = {
   languages_url: string;
 };
