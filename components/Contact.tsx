@@ -1,49 +1,87 @@
 "use client";
+
 import { motion } from "motion/react";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, Twitter, FileDown } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { content } from "@/config/content";
+import SectionHeading from "./SectionHeading";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 260, damping: 24 },
+  },
+};
 
 export default function Contact() {
-  const linkedInHref = siteConfig.socials.find(s => s.iconName === "linkedin")?.href;
-  const githubHref = siteConfig.socials.find(s => s.iconName === "github")?.href;
+  const linkedInHref = siteConfig.socials.find((s) => s.iconName === "linkedin")?.href;
+  const githubHref = siteConfig.socials.find((s) => s.iconName === "github")?.href;
+  const twitterHref = siteConfig.socials.find((s) => s.iconName === "twitter")?.href;
 
   const links = [
-    { href: `mailto:${siteConfig.email}`, Icon: Mail, label: siteConfig.email },
-    { href: linkedInHref, Icon: Linkedin, label: "LinkedIn" },
-    { href: githubHref, Icon: Github, label: "GitHub" },
+    {
+      href: `mailto:${siteConfig.email}`,
+      Icon: Mail,
+      label: siteConfig.email,
+      external: false,
+    },
+    { href: linkedInHref, Icon: Linkedin, label: "LinkedIn", external: true },
+    { href: githubHref, Icon: Github, label: "GitHub", external: true },
+    { href: twitterHref, Icon: Twitter, label: "X (Twitter)", external: true },
+    {
+      href: siteConfig.resumeUrl,
+      Icon: FileDown,
+      label: "Download Resume",
+      external: true,
+    },
   ];
 
   return (
-    <section id="contact" className="py-24 px-4">
+    <section id="contact" className="section-pad">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-barlow font-bold text-5xl mb-4">
-          <span className="bg-gradient-to-r from-violet-400 to-violet-300 bg-clip-text text-transparent">
-            Let&apos;s build something.
-          </span>
-        </h2>
-        <p className="font-mono text-xs text-zinc-500 mb-3">
-          Founder. Security Engineer. Open to advisory roles and serious conversations.
-        </p>
+        <SectionHeading
+          label="Connect"
+          title={content.contact.headline}
+          description={content.contact.subline}
+        />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          className="flex flex-col gap-4"
+          variants={containerVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl"
         >
-          {links.map(({ href, Icon, label }) =>
+          {links.map(({ href, Icon, label, external }) =>
             href ? (
               <motion.a
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ x: 6 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-center gap-3 text-zinc-400 hover:text-violet-400 transition-colors duration-300 group border border-zinc-800/60 rounded-xl px-4 py-3 hover:border-violet-400/30"
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                variants={cardVariants}
+                whileHover={{
+                  x: 6,
+                  borderColor: "rgba(167, 139, 250, 0.25)",
+                  boxShadow: "0 4px 20px -10px rgba(139, 92, 246, 0.15)",
+                }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                className="flex items-center gap-3 text-zinc-400 hover:text-violet-300 transition-colors group surface-card px-5 py-4 cursor-pointer"
               >
-                <Icon size={20} className="shrink-0" />
+                <Icon
+                  size={18}
+                  className="shrink-0 text-zinc-500 group-hover:text-violet-400 transition-colors duration-300"
+                />
                 <span className="text-sm font-medium">{label}</span>
               </motion.a>
             ) : null

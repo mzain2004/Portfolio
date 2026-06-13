@@ -25,19 +25,19 @@
 
 > "I do not build dashboards for alerts. I build autonomous systems that make defenders faster than adversaries."
 
-I am **Muhammad Zain**, a cybersecurity founder-engineer from Pakistan, focused on the intersection of **AI systems**, **cloud architecture**, and **offensive-defensive security operations**.
+I am **Muhammad Zain**, CEO & Director of Cygnus Ventures SMC Pvt Ltd and founder of PhishSlayer, an autonomous SOC intelligence platform built for MSSPs and enterprise security teams. I am focused on the intersection of **AI systems**, **security product engineering**, **cloud deployment**, and **DevSecOps**.
 
-- 20 years old, BS Cybersecurity (4th semester), Air University Multan Campus
-- Solo founder of **PhishSlayer**, an AI-powered autonomous SOC platform for MSSPs
-- Targeting high-scale security automation with a $5M seed trajectory
-- Certified: Oracle Cloud Infrastructure 2025 Certified Foundations Associate
+- CEO & Director, Cygnus Ventures SMC Pvt Ltd
+- Founder & Lead Engineer of **PhishSlayer**, an autonomous SOC intelligence platform for MSSPs
+- 3 verified certifications (Oracle Cloud, Microsoft Office Specialist, IBM Software Engineering)
+- Focused on security product development, DevSecOps, and cloud security architecture
 
 ---
 
 ## Tech Arsenal
 
 ### Core Stack
-![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
@@ -51,8 +51,10 @@ I am **Muhammad Zain**, a cybersecurity founder-engineer from Pakistan, focused 
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 ![x86 Assembly](https://img.shields.io/badge/x86_Assembly-444444?style=for-the-badge)
 
-### Certification
-![OCI Foundations Associate](https://img.shields.io/badge/Oracle_Cloud_Infrastructure-2025_Certified_Foundations_Associate-C74634?style=for-the-badge&logo=oracle&logoColor=white)
+### Certifications
+- **Oracle Cloud Infrastructure 2025 Certified Foundations Associate** (Active, Oct 2025 - Oct 2027)
+- **Microsoft Office Specialist: Word Associate (Office 2019)** (Verified, Issued Mar 2025)
+- **Introduction to Software Engineering (IBM)** (Verified, Issued Mar 2025 · ID: QPG2QWS99M6X)
 
 ---
 
@@ -163,7 +165,7 @@ A network architecture and planning project for enterprise-grade environments.
 Your digital command center and brand narrative platform.
 
 **Highlights:**
-- Built with Next.js 15, TypeScript, and Tailwind
+- Built with Next.js 16, TypeScript, and Tailwind
 - Showcases engineering trajectory, projects, and product vision
 - Designed as both portfolio and founder credibility layer
 

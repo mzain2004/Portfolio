@@ -1,28 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Instrument+Serif:italic&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-barlow: "Barlow", ui-sans-serif, system-ui, sans-serif;
-  --font-instrument: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --color-accent: #a78bfa;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-barlow: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-instrument: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --color-accent: #38bdf8;
+  --color-accent-2: #8b5cf6;
+  --color-success: #34d399;
+  --color-surface: #0f172a;
+  --color-surface-raised: #111827;
+  --color-border-subtle: #1e293b;
 }
 
 @layer base {
   :root {
-    --accent: #a78bfa;
+    --accent: #38bdf8;
+    --accent-2: #8b5cf6;
+    --success: #34d399;
+    --surface: #0f172a;
+    --surface-raised: #111827;
+    --border-subtle: #1e293b;
+    --background: #020617;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
-    @apply bg-zinc-950 text-zinc-50 antialiased selection:bg-zinc-800 selection:text-white;
+    @apply bg-[#020617] text-zinc-50 antialiased selection:bg-[#38bdf8]/20 selection:text-white;
+    background-color: #020617;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-[#38bdf8]/60;
   }
 }
 
 @layer utilities {
   .bg-grid-pattern {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: radial-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-pad {
+    @apply py-24 md:py-28 px-4;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-zinc-800/60 bg-zinc-900/45;
+  }
+
+  .font-instrument {
+    font-family: var(--font-instrument), ui-serif, Georgia, serif;
   }
 }
 
@@ -38,6 +79,12 @@
 .shimmer-text {
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-text {
+    animation: none;
+  }
 }
 
 @keyframes rotate-gradient {
@@ -68,10 +115,10 @@
   padding: 1.5px;
   background: conic-gradient(
     from var(--gradient-angle),
-    #a78bfa,
-    #c4b5fd,
-    #8b5cf6,
-    #a78bfa
+    oklch(0.78 0.16 205),
+    oklch(0.62 0.18 285),
+    oklch(0.8 0.16 160),
+    oklch(0.78 0.16 205)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -80,11 +127,51 @@
   z-index: -1;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .cta-gradient-border::before {
+    animation: none;
+  }
+}
+
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blink {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-soft {
+    animation: none;
+    opacity: 1;
+  }
 }

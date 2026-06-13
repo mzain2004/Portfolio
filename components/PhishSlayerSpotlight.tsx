@@ -1,82 +1,172 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Shield, Zap, Monitor, Cloud, User } from "lucide-react";
+import { Shield, Zap, Monitor, Cloud, User, ExternalLink, ArrowRight } from "lucide-react";
+import { content } from "@/config/content";
 import { siteConfig } from "@/config/site";
+import SectionHeading from "./SectionHeading";
+import { transition } from "@/lib/motion";
 
-const features = [
-  { icon: Shield, label: "AI powered phishing detection" },
-  { icon: Zap,    label: "Real time threat intelligence" },
-  { icon: Monitor, label: "EDR capabilities" },
-  { icon: Cloud,  label: "Production Azure deployment" },
-  { icon: User,   label: "Built solo from scratch" },
-];
+const featureIcons = {
+  shield: Shield,
+  zap: Zap,
+  monitor: Monitor,
+  cloud: Cloud,
+  user: User,
+};
 
 export default function PhishSlayerSpotlight() {
+  const { phishSlayer } = content;
+
   return (
-    <section id="phish-slayer" className="py-24 px-4">
+    <section id="phish-slayer" className="section-pad">
       <div className="max-w-6xl mx-auto">
-        <div className="relative bg-zinc-900/50 border border-violet-400/20 rounded-3xl p-8 md:p-12">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(167,139,250,0.05)_0%,transparent_70%)] rounded-3xl pointer-events-none" />
+        <SectionHeading
+          label="Flagship Product"
+          title={phishSlayer.title}
+          description={phishSlayer.subtitle}
+        />
 
-          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="relative rounded-3xl border border-violet-400/15 bg-zinc-900/50 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(139,92,246,0.08)_0%,transparent_55%)] pointer-events-none" />
 
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], type: "spring" }}
-              viewport={{ once: true, amount: 0.15 }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-violet-300 border border-violet-400/20 bg-violet-400/10 px-3 py-1 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-                  LIVE IN PRODUCTION
-                </span>
+          <div className="relative p-8 md:p-12 space-y-12">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-wider text-violet-300 border border-violet-400/25 bg-violet-400/10 px-3 py-1.5 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse-soft" />
+                {phishSlayer.badge}
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {phishSlayer.stack.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono text-[11px] text-zinc-400 border border-zinc-800 rounded-lg px-2.5 py-1"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <h2 className="font-barlow text-5xl font-bold text-white mb-2">
-                PhishSlayer
-              </h2>
-              <p className="text-zinc-400 text-lg mb-6">
-                AI Threat Intelligence &amp; EDR SaaS
-              </p>
-              <p className="text-zinc-300 leading-relaxed mb-8">
-                Production deployed on Azure UAE North, running on Docker + Nginx + SSL.
-                Built entirely on student and free tier resources with a focused solo execution path.
-              </p>
-              <a
-                href={siteConfig.phishSlayerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-violet-400/40 text-violet-400 px-6 py-3 rounded-lg text-sm font-mono hover:bg-violet-400/10 hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] transition-all duration-300"
-              >
-                Visit PhishSlayer
-              </a>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], type: "spring", delay: 0.1 }}
-              viewport={{ once: true, amount: 0.15 }}
-              className="flex flex-col gap-4"
-            >
-              {features.map(({ icon: Icon, label }, index) => (
+            <p className="text-zinc-300 text-base md:text-lg leading-relaxed max-w-3xl">
+              {phishSlayer.description}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 w-full">
+              {phishSlayer.metrics.map((metric, i) => (
                 <motion.div
-                  key={label}
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], type: "spring", delay: index * 0.08 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-zinc-800/30 border border-zinc-700/30 hover:text-violet-300 hover:translate-x-1 transition-all duration-300"
+                  key={metric.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ ...transition, delay: i * 0.06 }}
+                  viewport={{ once: true }}
+                  className="text-center surface-card py-4 px-3 flex flex-col justify-center min-h-[90px]"
                 >
-                  <div className="p-2 rounded-lg bg-violet-400/10 text-violet-400">
-                    <Icon size={18} />
-                  </div>
-                  <span className="text-zinc-200 font-medium">{label}</span>
+                  <p className="font-barlow font-bold text-base sm:text-lg xl:text-xl text-violet-400 leading-tight">
+                    {metric.value}
+                  </p>
+                  <p className="font-mono text-[9px] uppercase tracking-wider text-zinc-500 mt-1.5 leading-normal">
+                    {metric.label}
+                  </p>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div>
+                <h3 className="font-mono text-xs tracking-widest uppercase text-zinc-500 mb-5">
+                  Build Progress
+                </h3>
+                <div className="space-y-4">
+                  {phishSlayer.progress.map((item, index) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: -12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ ...transition, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex justify-between text-sm mb-1.5">
+                        <span className="text-zinc-300">{item.label}</span>
+                        <span className="font-mono text-zinc-500">{item.percent}%</span>
+                      </div>
+                      <div className="h-1.5 rounded-full bg-zinc-800 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${item.percent}%` }}
+                          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
+                          viewport={{ once: true }}
+                          className="h-full rounded-full bg-violet-400/80"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-mono text-xs tracking-widest uppercase text-zinc-500 mb-5">
+                  Pipeline Architecture
+                </h3>
+                <div className="space-y-3">
+                  {phishSlayer.architecture.map((step, index) => (
+                    <motion.div
+                      key={step.step}
+                      initial={{ opacity: 0, x: 12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ ...transition, delay: index * 0.06 }}
+                      viewport={{ once: true }}
+                      className="flex gap-4 items-start surface-card p-4"
+                    >
+                      <span className="font-mono text-xs text-violet-400 shrink-0 pt-0.5">
+                        {step.step}
+                      </span>
+                      <div>
+                        <p className="font-semibold text-zinc-100">{step.label}</p>
+                        <p className="text-sm text-zinc-500 mt-0.5">{step.detail}</p>
+                      </div>
+                      {index < phishSlayer.architecture.length - 1 && (
+                        <ArrowRight
+                          size={14}
+                          className="text-zinc-700 ml-auto shrink-0 hidden sm:block mt-1"
+                        />
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {phishSlayer.features.map(({ icon, label }, index) => {
+                const Icon = featureIcons[icon];
+                return (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ ...transition, delay: index * 0.04 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 surface-card p-4 hover:border-violet-400/20 transition-colors"
+                  >
+                    <div className="p-2 rounded-lg bg-violet-400/10 text-violet-400 shrink-0">
+                      <Icon size={16} />
+                    </div>
+                    <span className="text-sm text-zinc-300">{label}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            <a
+              href={siteConfig.phishSlayerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 cta-gradient-border bg-zinc-950 text-zinc-50 px-6 py-3 rounded-xl text-sm font-semibold hover:bg-zinc-900 transition-colors"
+            >
+              Visit PhishSlayer
+              <ExternalLink size={15} />
+            </a>
           </div>
         </div>
       </div>

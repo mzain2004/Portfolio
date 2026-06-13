@@ -1,6 +1,36 @@
 "use client";
 import React, { useRef, useEffect } from 'react';
 
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+
+  constructor(width: number, height: number) {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.radius = Math.random() * 1.5 + 0.5;
+  }
+
+  update(width: number, height: number) {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.25)'; // sky-400 tint
+    ctx.fill();
+  }
+}
+
 export default function ParticleNetwork() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -20,42 +50,11 @@ export default function ParticleNetwork() {
       initParticles();
     };
 
-    class Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 1.5 + 0.5;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(167, 139, 250, 0.3)'; // violet-400 tint
-        ctx.fill();
-      }
-    }
-
     const initParticles = () => {
       particles = [];
       const numParticles = Math.floor((canvas.width * canvas.height) / 15000);
       for (let i = 0; i < numParticles; i++) {
-        particles.push(new Particle());
+        particles.push(new Particle(canvas.width, canvas.height));
       }
     };
 
@@ -68,7 +67,7 @@ export default function ParticleNetwork() {
           
           if (distance < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(167, 139, 250, ${0.15 - distance / 120 * 0.15})`;
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 - distance / 120 * 0.12})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -83,7 +82,7 @@ export default function ParticleNetwork() {
         
         if (distMouse < 150) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(167, 139, 250, ${0.3 - distMouse / 150 * 0.3})`;
+          ctx.strokeStyle = `rgba(56, 189, 248, ${0.25 - distMouse / 150 * 0.25})`;
           ctx.lineWidth = 1;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(mouse.x, mouse.y);
@@ -95,28 +94,33 @@ export default function ParticleNetwork() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
-        p.update();
-        p.draw();
+        p.update(canvas.width, canvas.height);
+        p.draw(ctx);
       });
       drawLines();
       animationFrameId = requestAnimationFrame(animate);
     };
 
     window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseout', () => {
+    };
+    const handleMouseOut = () => {
       mouse.x = -1000;
       mouse.y = -1000;
-    });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseout', handleMouseOut);
 
     resize();
     animate();
 
     return () => {
       window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseout', handleMouseOut);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

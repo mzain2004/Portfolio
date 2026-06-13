@@ -1,6 +1,8 @@
 type SiteConfig = {
+  url: string;
   phishSlayerUrl: string;
   email: string;
+  resumeUrl?: string;
   socials: Array<{
     name: string;
     href: string;
@@ -9,23 +11,25 @@ type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
+  url: "https://mzain.me",
   phishSlayerUrl: "https://phishslayer.tech",
-  email: "zainrana605890@gmail.com",
+  email: "zain@cygnusventures.dev",
+  // resumeUrl: "/resume.pdf", // TODO: Add public/resume.pdf when available
   socials: [
     {
-      name: 'GitHub',
-      href: 'https://github.com/mzain2004/',
-      iconName: 'github'
+      name: "GitHub",
+      href: "https://github.com/mzain2004/",
+      iconName: "github",
     },
     {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/mzain-founder/',
-      iconName: 'linkedin'
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/mzain-founder/",
+      iconName: "linkedin",
     },
     {
-      name: 'X (Twitter)',
-      href: 'https://x.com/mzain2004',
-      iconName: 'twitter'
-    }
-  ]
+      name: "X (Twitter)",
+      href: "https://x.com/mzain2004",
+      iconName: "twitter",
+    },
+  ],
 };
