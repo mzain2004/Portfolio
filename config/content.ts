@@ -1,4 +1,4 @@
-export type ProjectStatus = "live" | "in-progress" | "archive";
+export type ProjectStatus = "live" | "in-progress" | "finalist" | "archive";
 
 export type Project = {
   title: string;
@@ -42,7 +42,7 @@ export const content = {
     credentials: [
       { icon: "shield" as const, text: "CEO & Director, Cygnus Ventures SMC Pvt Ltd" },
       { icon: "shield" as const, text: "Founder, PhishSlayer (Autonomous SOC)" },
-      { icon: "graduation" as const, text: "Studied BS Cyber Security, Air University (until Jun 2026)" },
+      { icon: "graduation" as const, text: "Studying BS Cyber Security, Air University (until Jun 2028)" },
       { icon: "cloud" as const, text: "Oracle & IBM Certified Professional" },
     ],
   },
@@ -127,6 +127,24 @@ export const content = {
       impact: "Production MSSP platform on cost-optimized infra",
     },
     security: [
+      {
+        title: "soc-autopilot-agent",
+        description:
+          "Built for the Global AI Hackathon's Autopilot Agent track (Qwen Cloud / Alibaba) — an autonomous SOC operations agent extending PhishSlayer's L1/L2/L3 escalation architecture into a self-directing agent workflow with live MongoDB persistence.",
+        stack: ["Python", "Qwen Cloud", "AI Agents", "MongoDB"],
+        href: "https://github.com/mzain2004/soc-autopilot-agent",
+        status: "in-progress" as ProjectStatus,
+        impact: "Submitted Jul 2026 · Global AI Hackathon · Team / Remote",
+      },
+      {
+        title: "Panacea",
+        description:
+          "Led a 5-person remote team to build a zero-trust network agent for hospital IIoT devices at RAISE Summit Hackathon 2026. Designed continuous device verification and micro-segmentation for clinical networks where legacy medical devices can't run traditional endpoint agents.",
+        stack: ["Python", "Zero-Trust", "IIoT Security", "Network Agents"],
+        href: "https://github.com/brian-mwirigi/Panecea",
+        status: "finalist" as ProjectStatus,
+        impact: "Finalist · RAISE Summit Hackathon 2026 · Lead Security Architect",
+      },
       {
         title: "ABTechSolutions",
         description:
@@ -239,8 +257,8 @@ export const content = {
     {
       title: "BS Cyber Security",
       school: "Air University Multan Campus",
-      date: "Feb 2025 to Jun 2026",
-      description: "Studied BS Cyber Security at Air University Multan Campus until Jun 2026, building base cybersecurity concepts, programming, networking, and software engineering foundations before transitioning full-time into company building and security product engineering.",
+      date: "Feb 2025 to Jun 2028",
+      description: "Studying BS Cyber Security at Air University Multan Campus until Jun 2028, building core cybersecurity concepts, programming, networking, and software engineering foundations while simultaneously pursuing company building and security product engineering.",
     },
     {
       title: "BS Data Science",

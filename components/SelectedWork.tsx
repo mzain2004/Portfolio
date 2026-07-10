@@ -13,6 +13,10 @@ const statusStyles: Record<ProjectStatus, { label: string; className: string }> 
     label: "In Progress",
     className: "text-amber-400 border-amber-400/30 bg-amber-400/10",
   },
+  finalist: {
+    label: "Finalist",
+    className: "text-sky-400 border-sky-400/30 bg-sky-400/10",
+  },
   archive: { label: "Archive", className: "text-zinc-500 border-zinc-700/50 bg-zinc-800/40" },
 };
 

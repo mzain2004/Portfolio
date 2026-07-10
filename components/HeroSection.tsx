@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "motion/react";
-import { ArrowRight, ExternalLink, Terminal } from "lucide-react";
+import { ArrowRight, ExternalLink, GraduationCap, Terminal } from "lucide-react";
 import { content } from "@/config/content";
 import { siteConfig } from "@/config/site";
 import { transition } from "@/lib/motion";
@@ -187,7 +187,7 @@ function TerminalCard() {
           { text: "Founder & Lead Engineer of PhishSlayer", type: "info" },
           { text: "Building autonomous SOC intelligence for MSSPs and enterprise security teams.", type: "info" },
           { text: "Background in web development, cloud, CI/CD, DevSecOps, and cybersecurity.", type: "info" },
-          { text: "Studied Cyber Security at Air University Multan until Jun 2026.", type: "info" }
+          { text: "Studying Cyber Security at Air University Multan until Jun 2028.", type: "info" }
         );
         break;
       case "contact":
@@ -351,6 +351,11 @@ export default function HeroSection() {
             {typedRole}
             {!reducedMotion && <span className="animate-blink text-violet-400">|</span>}
           </p>
+
+          <div className="mt-3 inline-flex items-center gap-2 rounded-xl border border-zinc-800/60 bg-zinc-950/40 px-4 py-2 text-zinc-400 hover:text-zinc-200 transition-colors w-fit">
+            <GraduationCap size={15} className="text-violet-400 shrink-0" />
+            <span className="text-xs font-mono tracking-wide">BS Cyber Security · Air University</span>
+          </div>
 
           <blockquote className="mt-8 border-l-2 border-violet-400/40 pl-5 max-w-xl">
             <p className="font-instrument italic text-xl md:text-2xl text-zinc-300 leading-snug text-balance">
